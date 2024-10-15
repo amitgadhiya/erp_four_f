@@ -10,7 +10,7 @@ Dashboard
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Registration</h4>
+                                <h4 class="card-title">Sales</h4>
                                 <canvas id="lineChart" style="height:250px"></canvas>
                             </div>
                         </div>
@@ -18,7 +18,7 @@ Dashboard
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Payments</h4>
+                                <h4 class="card-title">Projects</h4>
                                 <canvas id="barChart" style="height:230px"></canvas>
                             </div>
                         </div>

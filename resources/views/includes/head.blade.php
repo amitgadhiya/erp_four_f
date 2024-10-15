@@ -9,7 +9,7 @@
     <meta name="googlebot" content="noindex">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
-
+      @yield('title') - Four F ERP
 
       </title>
 
