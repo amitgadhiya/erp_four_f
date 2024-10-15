@@ -21,7 +21,7 @@
 
             <div class="auto-form-wrapper">
 
-                <form action="/{{Config::get('vars.adminURL')}}/login" method="post">
+                <form action="/dashboard" method="post">
 @csrf
                     <div class="form-group" >
 

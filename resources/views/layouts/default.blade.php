@@ -2,19 +2,19 @@
 
 <html lang="en">
 <head>
-@include('admin.includes.head')
+@include('includes.head')
 </head>
 <body>
 
   <div class="container-scroller">
 
-    @include('admin.includes.header')
+    @include('includes.header')
 
     <div class="container-fluid page-body-wrapper">
 
 
 
-        @include('admin.includes.aside')
+        @include('includes.aside')
 
 
 
@@ -81,7 +81,7 @@
 
         <!-- content-wrapper ends -->
 
-        @include('admin.includes.footer')
+        @include('includes.footer')
 
         <!-- partial -->
 
@@ -95,7 +95,7 @@
 
   </div>
 
-  @include('admin.includes.script')
+  @include('includes.script')
   @yield('script')
   <script>
     $(".alert-block").fadeTo(5000, 500).slideUp(500, function(){

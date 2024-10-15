@@ -217,7 +217,10 @@
 
           <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
 
-            <span class="profile-text">Hello, {{ Auth::user()->name }}</span>
+            <span class="profile-text">Hello, 
+              user name
+              {{-- {{ Auth::user()->name }} --}}
+            </span>
 
             <img class="img-xs rounded-circle" src="{{ asset(Config::get('vars.adminFolder').'/images/faces/face1.jpg') }}" alt="Profile image">
 

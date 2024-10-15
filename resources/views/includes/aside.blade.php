@@ -7,7 +7,11 @@
               <img src="{{asset('FrontEnd/images/faces/face1.jpg')}}" alt="profile image">
             </div>
             <div class="text-wrapper">
-              <p class="profile-name">{{ Auth::user()->name }}</p>
+              <p class="profile-name">
+                {{-- {{ Auth::user()->name }} --}}
+
+                User name
+              </p>
               <div>
                 <small class="designation text-muted"></small>
                 <span class="status-indicator online"></span>
@@ -19,7 +23,7 @@
       </li>
 
       <li class="nav-item">
-      <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/dashboard">
+      <a class="nav-link" href="/dashboard">
           <i class="menu-icon mdi mdi-television"></i>
           <span class="menu-title">Dashboard</span>
         </a>
@@ -34,26 +38,26 @@
           <ul class="nav flex-column sub-menu">
 
             <li class="nav-item">
-                <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/board">Board</a>
+                <a class="nav-link" href="/User">User</a>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/classes">Class</a>
+              <a class="nav-link" href="/Client">Client</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/subject">Subject</a>
+              <a class="nav-link" href="/Vender">Vender</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/chapter">Chapter</a>
-            </li>
+            
 
             
             <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/question">Question</a>
+              <a class="nav-link" href="/gst">GST</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/paperprice">Paper Price</a>
+              <a class="nav-link" href="/department">Department</a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link" href="/elements">Elements</a>
+            </li>
 
 
           </ul>
@@ -63,21 +67,89 @@
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#user" aria-expanded="false" aria-controls="master">
           <i class="menu-icon mdi mdi-playlist-plus"></i>
-          <span class="menu-title">Users</span>
+          <span class="menu-title">Transaction</span>
           <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="user">
           <ul class="nav flex-column sub-menu">
 
           <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/order_pending">All Users</a>
+              <a class="nav-link" href="/quotation">Quotaion</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/order_cancle">Block Users</a>
+              <a class="nav-link" href="/po">Purchase Order</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/order_success">Search Users</a>
+              <a class="nav-link" href="/project">Project</a>
             </li>
+
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#store" aria-expanded="false" aria-controls="master">
+          <i class="menu-icon mdi mdi-playlist-plus"></i>
+          <span class="menu-title">Store</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="store">
+          <ul class="nav flex-column sub-menu">
+
+          <li class="nav-item">
+              <a class="nav-link" href="/inward">In-ward</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/outward">Out-Ward</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/stock">Stock</a>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#hr" aria-expanded="false" aria-controls="master">
+          <i class="menu-icon mdi mdi-playlist-plus"></i>
+          <span class="menu-title">HR</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="hr">
+          <ul class="nav flex-column sub-menu">
+
+          <li class="nav-item">
+              <a class="nav-link" href="/salary">Salary</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Shift">Shift</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/leave_app">Leave Application</a>
+            </li>
+
+
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#tpm" aria-expanded="false" aria-controls="master">
+          <i class="menu-icon mdi mdi-playlist-plus"></i>
+          <span class="menu-title">TPM</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="tpm">
+          <ul class="nav flex-column sub-menu">
+
+          <li class="nav-item">
+              <a class="nav-link" href="/schedule">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pending_task">Pending Task</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/completed_task">Completed Task</a>
+            </li>
+
 
           </ul>
         </div>
@@ -92,13 +164,13 @@
           <ul class="nav flex-column sub-menu">
 
           <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/order_pending">Sales</a>
+              <a class="nav-link" href="/order_pending">Sales</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/order_cancle">Registration</a>
+              <a class="nav-link" href="/order_cancle">Registration</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/{{Config::get('vars.adminURL')}}/report/abstract">Abstract</a>
+              <a class="nav-link" href="/report/abstract">Abstract</a>
             </li>
 
 
