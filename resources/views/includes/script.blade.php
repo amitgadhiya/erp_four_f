@@ -15,10 +15,11 @@
   <!-- inject:js -->
 
   <script src="{{ asset(Config::get('vars.adminFolder').'/js/off-canvas.js')}}"></script>
-  <script src="{{ asset(Config::get('vars.adminFolder').'/js/jquery.dataTables.min.js') }}"></script>
+  
 
   <script src="{{ asset(Config::get('vars.adminFolder').'/js/misc.js') }}"></script>
   
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <!-- endinject -->
 
   <!-- Custom js for this page-->

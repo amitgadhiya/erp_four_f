@@ -14,13 +14,14 @@
       </title>
 
     <!-- plugins:css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 
     <link rel="stylesheet" href="{{ asset(Config::get('vars.adminFolder').'/vendors/iconfonts/mdi/css/materialdesignicons.min.css')}}">
 
     <link rel="stylesheet" href="{{ asset(Config::get('vars.adminFolder').'/vendors/css/vendor.bundle.base.css')}}">
 
     <link rel="stylesheet" href="{{ asset(Config::get('vars.adminFolder').'/vendors/css/vendor.bundle.addons.css')}}">
-    <link rel="stylesheet" href="{{ asset(Config::get('vars.adminFolder').'/vendors/css/jquery.dataTables.min.css')}}">
+    <link href="https://cdn.datatables.net/v/dt/dt-2.1.8/datatables.min.css" rel="stylesheet">
 
     <!-- endinject -->
 

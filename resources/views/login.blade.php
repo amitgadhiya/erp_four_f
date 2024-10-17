@@ -21,7 +21,7 @@
 
             <div class="auto-form-wrapper">
 
-                <form action="/dashboard" method="post">
+                <form action="/dashboard" method="get">
 @csrf
                     <div class="form-group" >
 

@@ -27,7 +27,9 @@
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-title p-2 text-center mb-0">
+                  <h4>
                   @yield('title')
+                </h4>
                 </div>
                 <div class="card-body p-2 col-lg-12">
 @if ($message = Session::get('success'))
@@ -96,6 +98,7 @@
   </div>
 
   @include('includes.script')
+  
   @yield('script')
   <script>
     $(".alert-block").fadeTo(5000, 500).slideUp(500, function(){
