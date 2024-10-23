@@ -38,25 +38,29 @@
           <ul class="nav flex-column sub-menu">
 
             <li class="nav-item">
-                <a class="nav-link" href="/master/user-list">User</a>
+                <a class="nav-link" href="{{ route('user.list')}}">Users</a>
               </li>
             <li class="nav-item">
-              <a class="nav-link" href="/master/client-list">Client</a>
+              <a class="nav-link" href="{{ route('client.list')}}">Clients</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/master/vender-list">Vender</a>
+              <a class="nav-link" href="{{ route('vender.list')}}">Venders</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('machine.list')}}">Machines</a>
             </li>
             
 
             
             <li class="nav-item">
-              <a class="nav-link" href="/master/gst-list">GST</a>
+              <a class="nav-link" href="{{ route('gst.list')}}">GST</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/master/department-list">Department</a>
+              <a class="nav-link" href="/master/department-list">Departments</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/master/element-list">Element</a>
+              <a class="nav-link" href="{{ route('row_item.list')}}">Row Item</a>
             </li>
 
 
@@ -74,13 +78,36 @@
           <ul class="nav flex-column sub-menu">
 
           <li class="nav-item">
-              <a class="nav-link" href="/quotation">Quotaion</a>
+              <a class="nav-link" href="{{ route('quotation.list')}}">Quotations</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('project.list')}}">Projects</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/po">Purchase Order</a>
+              <a class="nav-link" href="{{ route('po.list')}}">Purchase Order</a>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#store" aria-expanded="false" aria-controls="master">
+          <i class="menu-icon mdi mdi-store"></i>
+          <span class="menu-title">Store</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="store">
+          <ul class="nav flex-column sub-menu">
+
+          <li class="nav-item">
+              <a class="nav-link" href="/inward">In-ward</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/project">Project</a>
+              <a class="nav-link" href="/outward">Out-Ward</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/stock">Stock</a>
             </li>
 
           </ul>
@@ -111,28 +138,7 @@
           </ul>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#store" aria-expanded="false" aria-controls="master">
-          <i class="menu-icon mdi mdi-store"></i>
-          <span class="menu-title">Store</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="store">
-          <ul class="nav flex-column sub-menu">
-
-          <li class="nav-item">
-              <a class="nav-link" href="/inward">In-ward</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/outward">Out-Ward</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/stock">Stock</a>
-            </li>
-
-          </ul>
-        </div>
-      </li>
+      
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#hr" aria-expanded="false" aria-controls="master">
           <i class="menu-icon mdi mdi-account"></i>
