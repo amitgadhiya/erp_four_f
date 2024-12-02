@@ -29,6 +29,12 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('todo.list')}}">
+            <i class="menu-icon mdi mdi-television"></i>
+            <span class="menu-title">ToDo</span>
+          </a>
+        </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#master" aria-expanded="false" aria-controls="master">
           <i class="menu-icon mdi mdi-book-open-variant"></i>
           <span class="menu-title">Masters</span>
@@ -77,7 +83,11 @@
         <div class="collapse" id="user">
           <ul class="nav flex-column sub-menu">
 
-          <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('enquiry.list')}}">Enquiry</a>
+            </li>
+
+            <li class="nav-item">
               <a class="nav-link" href="{{ route('quotation.list')}}">Quotations</a>
             </li>
             
@@ -86,6 +96,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('po.list')}}">Purchase Order</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('daily_entery.list')}}">Daily Entery</a>
             </li>
 
           </ul>
@@ -101,14 +114,61 @@
           <ul class="nav flex-column sub-menu">
 
           <li class="nav-item">
-              <a class="nav-link" href="/inward">In-ward</a>
+              <a class="nav-link" href="{{ route('in-ward.list')}}">In-ward</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/outward">Out-Ward</a>
+              <a class="nav-link" href="{{ route('out-ward.list')}}">Out-Ward</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('issue.list')}}">Issue</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/stock">Stock</a>
+              <a class="nav-link" href="{{ route('received.list')}}">Received</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('stock.list')}}">Stock</a>
+            </li>
+
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#quality" aria-expanded="false" aria-controls="master">
+          <i class="menu-icon mdi mdi-cash-multiple"></i>
+          <span class="menu-title">Quality</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="quality">
+          <ul class="nav flex-column sub-menu">
+
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('purchase.list')}}">Receive</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('sales.list')}}">Issue</a>
+            </li>
+            
+
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#assembly" aria-expanded="false" aria-controls="master">
+          <i class="menu-icon mdi mdi-cash-multiple"></i>
+          <span class="menu-title">Assembly</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="assembly">
+          <ul class="nav flex-column sub-menu">
+
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('purchase.list')}}">Receive</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('sales.list')}}">Issue</a>
+            </li>
+            
 
           </ul>
         </div>
@@ -123,16 +183,16 @@
           <ul class="nav flex-column sub-menu">
 
           <li class="nav-item">
-              <a class="nav-link" href="/inward">Purchase</a>
+              <a class="nav-link" href="{{ route('purchase.list')}}">Purchase</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/outward">Sales</a>
+              <a class="nav-link" href="{{ route('sales.list')}}">Sales</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/stock">Income</a>
+              <a class="nav-link" href="{{ route('income.list')}}">Income</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/stock">Expences</a>
+              <a class="nav-link" href="{{ route('expences.list')}}">Expences</a>
             </li>
 
           </ul>
@@ -149,13 +209,13 @@
           <ul class="nav flex-column sub-menu">
 
           <li class="nav-item">
-              <a class="nav-link" href="/salary">Salary</a>
+              <a class="nav-link" href="{{ route('salary.list')}}">Salary</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Shift">Shift</a>
+              <a class="nav-link" href="{{ route('shift.list')}}">Shift</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/leave_app">Leave Application</a>
+              <a class="nav-link" href="{{ route('leave-app.list')}}">Leave Application</a>
             </li>
 
 
@@ -172,13 +232,13 @@
           <ul class="nav flex-column sub-menu">
 
           <li class="nav-item">
-              <a class="nav-link" href="/schedule">Schedule</a>
+              <a class="nav-link" href="{{ route('schedule-task.list')}}">Schedule</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/pending_task">Pending Task</a>
+              <a class="nav-link" href="{{ route('pending-task.list')}}">Pending Task</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/completed_task">Completed Task</a>
+              <a class="nav-link" href="{{ route('completed-task.list')}}">Completed Task</a>
             </li>
 
 

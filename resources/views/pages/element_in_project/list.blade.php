@@ -9,6 +9,13 @@
             width: 100% !important;
         }
     </style>
+    <div class="row">
+        <div class="col-lg-12 text-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
+                Upload Excel
+            </button>
+        </div>
+    </div>
     
     <div class="row">
         <div class="col-lg-4">
@@ -113,7 +120,7 @@
                             <th>Sr.</th>
                             <th>Element no</th>
                             <th>Element Name</th>
-                            <th>Element Catg</th>
+                            <th>Element Type</th>
                             <th>Qty</th>
                             <th>Production Status</th>
                             <th>Ordered Status</th>
@@ -164,7 +171,7 @@
                                     'id' => 1,
                                     'element_no' => 'EL001',
                                     'element' => 'name',
-                                    'catg' => '1',
+                                    'catg' => 'Hydraulic',
                                     'qty' => '1',
                                     'status_pro' => 'Started',
                                     'status_order' => 'pending',
@@ -173,7 +180,7 @@
                                     'id' => 2,
                                     'element_no' => 'EL002',
                                     'element' => 'name',
-                                    'catg' => '2',
+                                    'catg' => 'Hydraulic',
                                     'qty' => '1',
                                     'status_pro' => 'Cutting',
                                     'status_order' => 'revived',
@@ -182,7 +189,7 @@
                                     'id' => 3,
                                     'element_no' => 'EL003',
                                     'element' => 'name',
-                                    'catg' => '3',
+                                    'catg' => 'Raw Material',
                                     'qty' => '2',
                                     'status_pro' => 'Hardening',
                                     'status_order' => 'not ordered',
@@ -191,7 +198,7 @@
                                     'id' => 4,
                                     'element_no' => 'EL004',
                                     'element' => 'name',
-                                    'catg' => '3',
+                                    'catg' => 'Raw Material',
                                     'qty' => '1',
                                     'status_pro' => 'Rough Grinding',
                                     'status_order' => 'revived',
@@ -200,7 +207,7 @@
                                     'id' => 5,
                                     'element_no' => 'EL005',
                                     'element' => 'name',
-                                    'catg' => '3',
+                                    'catg' => 'Manufacturing',
                                     'qty' => '1',
                                     'status_pro' => 'Completed',
                                     'status_order' => 'revived',
@@ -244,6 +251,40 @@
             </div>
         </div>
     </div>
+    <!-- Modal Structure -->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Upload Excel File</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form inside the modal -->
+                <form id="uploadForm">
+                    <div class="mb-3">
+                        <label for="excelFile" class="form-label">Select Excel File</label>
+                        <input type="file" class="form-control" id="excelFile" name="excelFile" accept=".xls, .xlsx">
+                    </div>
+                    <div class="mb-3">
+                        <label for="excelFile" class="form-label">Type of elements</label>
+                        <select class="form-control" id="elementType" name="elementType" required>
+                            <option value="" disabled selected>Select type</option>
+                            <option value="type1">Manufacturing element</option>
+                            <option value="type2">Hydraulic element </option>
+                            <option value="type3">Hardware</option>
+                        </select>
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" form="uploadForm">Upload</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')

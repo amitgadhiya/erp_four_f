@@ -2,12 +2,14 @@
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 
     <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-
-        <a class="navbar-brand brand-logo" style="color: #002a80" href="dashboard.php">
-
-        <span style="font-size: 15px; line-height: 17px;">{{ config('app.name') }}</span>
-
-      </a>
+      
+      <a class="navbar-brand brand-logo" style="color: #002a80" href="dashboard.php">
+        <div class="container d-flex flex-column align-items-center">
+            <img src="{{ asset('FrontEnd/images/logo.jpg') }}" style="width: 20%; height: auto;" alt="">
+            <span style="font-size: 15px; line-height: 17px; text-align: center;">{{ config('app.name') }}</span>
+        </div>
+    </a>
+    
 
 
 

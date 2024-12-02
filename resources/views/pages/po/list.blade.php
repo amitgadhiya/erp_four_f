@@ -79,6 +79,7 @@
                                     <li><a class="dropdown-item" href="{{ route('po.edit', $po->id) }}">Edit PO</a></li>
 
                                     <li><a class="dropdown-item" href="{{ route('po_item.list', $po->id) }}">Manage PO</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('po.view', $po->id) }}">View PO</a></li>
                                     
                                 </ul>
                             </div>
