@@ -21,7 +21,7 @@
 
             <div class="auto-form-wrapper">
 
-                <form action="/dashboard" method="get">
+                <form action="{{route('loginPost')}}" method="post">
 @csrf
                     <div class="form-group" >
 

@@ -1,11 +1,11 @@
-@extends('layouts.default')
+@extends('layouts.default',['__menu' => 'master','__menu_sub' => 'vender'])
 @section('title')
     List Vender
 @endsection
 @section('content')
 <div class="row">
     <div class="col-lg-12 d-flex justify-content-end">
-        <a href="{{ route('vender.add') }}" class="btn btn-primary">Add Vender</a>
+        <a href="{{ route('venderAdd') }}" class="btn btn-primary">Add Vender</a>
     </div>
 </div>
 <div class="table-responsive mt-3">
@@ -20,88 +20,20 @@
         </tr>
     </thead>
     <tbody>
-        @php
-    $venders = [
-        (object) [
-            'id' => 1,
-            'name' => 'Vender 1',
-            'email' => 'vender1@example.com',
-            'gst' => 'GSTIN1',
-        ],
-        (object) [
-            'id' => 2,
-            'name' => 'Vender 2',
-            'email' => 'vender2@example.com',
-            'gst' => 'GSTIN2',
-        ],
-        (object) [
-            'id' => 3,
-            'name' => 'Vender 3',
-            'email' => 'vender3@example.com',
-            'gst' => 'GSTIN3',
-        ],
-        (object) [
-            'id' => 4,
-            'name' => 'Vender 4',
-            'email' => 'vender4@example.com',
-            'gst' => 'GSTIN4',
-        ],
-        (object) [
-            'id' => 5,
-            'name' => 'Vender 5',
-            'email' => 'vender5@example.com',
-            'gst' => 'GSTIN5',
-        ],
-        (object) [
-            'id' => 6,
-            'name' => 'Vender 6',
-            'email' => 'vender6@example.com',
-            'gst' => 'GSTIN6',
-        ],
-        (object) [
-            'id' => 7,
-            'name' => 'Vender 7',
-            'email' => 'vender7@example.com',
-            'gst' => 'GSTIN7',
-        ],
-        (object) [
-            'id' => 8,
-            'name' => 'Vender 8',
-            'email' => 'vender8@example.com',
-            'gst' => 'GSTIN8',
-        ],
-        (object) [
-            'id' => 9,
-            'name' => 'Vender 9',
-            'email' => 'vender9@example.com',
-            'gst' => 'GSTIN9',
-        ],
-        (object) [
-            'id' => 10,
-            'name' => 'Vender ender 10',
-            'email' => 'vender10@example.com',
-            'gst' => 'GSTIN10',
-        ],
-        (object) [
-            'id' => 11,
-            'name' => 'Admin Vender',
-            'email' => 'admin@example.com',
-            'gst' => 'GSTIN_ADMIN',
-        ],
-    ];
-@endphp
+       
 
 @foreach ($venders as $vender)
 <tr>
-    <td>{{ $vender->id }}</td>
-    <td>{{ $vender->name }}</td>
-    <td>{{ $vender->email }}</td>
-    <td>{{ $vender->gst }}</td>
+    <td>{{ $loop->iteration }}</td>
+    <td>{{ $vender->vender_name }}</td>
+    <td>{{ $vender->vender_email }}</td>
+    <td>{{ $vender->vender_gst_no }}</td>
     <td>
-        <a href="{{ route('vender.edit', $vender->id) }}" class="btn btn-primary">Edit</a>
-        <form action="{{ route('vender.delete', $vender->id) }}" method="POST" style="display:inline;">
+        <a href="{{ route('venderEdit', $vender->vender_id) }}" class="btn btn-primary">Edit</a>
+        
+        <form action="{{ route('venderDelete', $vender->vender_id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete()">
             @csrf
-            @method('DELETE')
+            
             <button type="submit" class="btn btn-danger">Delete</button>
         </form>
     </td>

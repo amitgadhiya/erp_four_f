@@ -14,11 +14,10 @@
                 <th>Sales Date</th>
                 <th>Invoice No</th>
                 <th>Customer Name</th>
-                <th>Material</th>
-                <th>Quantity</th>
-                <th>Unit</th>
+                
                 <th>Total Amount (Rs)</th>
                 <th>Remarks</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -27,11 +26,13 @@
                 <td>2024-11-25</td>
                 <td>INV98765</td>
                 <td>XYZ Traders</td>
-                <td>Steel Rods</td>
-                <td>500</td>
-                <td>Kg</td>
+                
                 <td>₹25,000</td>
                 <td>Delivered on time</td>
+                <td>
+                    <a href="{{route('sales.edit')}}">Edit</a> | 
+                    <a href="{{route('sales.manage')}}">Manage</a>
+                </td>
             </tr>
             <!-- Add more rows dynamically -->
         </tbody>

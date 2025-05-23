@@ -5,73 +5,66 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12 d-flex justify-content-end">
-        <a href="{{ route('enquiry.add') }}" class="btn btn-primary">Add Enquiry</a>
+        <a href="{{ route('enquiryAdd') }}" class="btn btn-primary">Add Enquiry</a>
     </div>
 </div>
 <div class="table-responsive mt-3">
-    <table id="enquiryTable" class="display">
-        <thead>
+    <table id="enquiryTable" class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Enquiry No</th>
-                <th>Client</th>
+                <th>Customer</th>
                 <th>Date</th>
+                <th>Priority</th>
+                
+                <th>Input </th>
+                <th>Concept Working</th>
+                <th>Concept Approval</th>
+                <th>Remark </th>
+                <th>Status </th>
+                
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @php
-                $clients = [
-                    (object) [
-                        'id' => 1,
-                        'enquiry_no' => 'EN001',
-                        'client' => 'Client 1',
-                        'date' => '2024-10-01',
-                    ],
-                    (object) [
-                        'id' => 2,
-                        'enquiry_no' => 'EN002',
-                        'client' => 'Client 2',
-                        'date' => '2024-10-02',
-                    ],
-                    (object) [
-                        'id' => 3,
-                        'enquiry_no' => 'EN003',
-                        'client' => 'Client 3',
-                        'date' => '2024-10-03',
-                    ],
-                    (object) [
-                        'id' => 4,
-                        'enquiry_no' => 'EN004',
-                        'client' => 'Client 4',
-                        'date' => '2024-10-04',
-                    ],
-                    (object) [
-                        'id' => 5,
-                        'enquiry_no' => 'EN005',
-                        'client' => 'Client 5',
-                        'date' => '2024-10-05',
-                    ],
-                    // Add more clients as needed
-                ];
-            @endphp
+           
     
-            @foreach ($clients as $client)
+            @foreach ($enqs as $enq)
             <tr>
-                <td>{{ $client->id }}</td>
-                <td>{{ $client->enquiry_no }}</td>
-                <td>{{ $client->client }}</td>
-                <td>{{ $client->date }}</td>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $enq->enq_number }} 
+                    <i class="fas fa-info-circle text-info" 
+             data-bs-toggle="tooltip" 
+             data-bs-trigger="click" 
+             data-bs-placement="right" 
+             title="{{ $enq->enq_details }}">
+          </i>
+                 </i>
+
+                </td>
+                <td>{{ $enq->party->party_name }}</td>
+                <td>{{ $enq->enq_date }}</td>
+                <td class="{{ $enq->enq_priority == 'Hot' ? 'bg-danger' : ($enq->enq_priority == 'Warm' ? 'bg-warning' : ($enq->enq_priority == 'Cold' ? 'bg-primary' : '')) }}">{{ $enq->enq_priority }}</td>
+                
+                
+                <td class="{{ $enq->enq_input == 'Complete' ? 'bg-success':'bg-danger'}}">{{ $enq->enq_input }}</td>
+                <td class="{{ $enq->enq_cons_work == 'Complete' ? 'bg-success':'bg-danger'}}">{{ $enq->enq_cons_work }}</td>
+                <td class="{{ $enq->enq_cons_app == 'Complete' ? 'bg-success':'bg-danger'}}">{{ $enq->enq_cons_app }}</td>
+                <td>{{ $enq->enq_remark }}</td>
+                <td>{{ $enq->enq_work_status }}</td>
+                
                 <td>
                     <div class="dropdown">
-                        <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $client->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $enq->enq_id }}" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $client->id }}">
-                            {{-- <li><a class="dropdown-item" href="{{ route('enquiry.view', $client->id) }}">View</a></li> --}}
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $enq->enq_id }}">
+                            <li><a class="dropdown-item" href="{{ route('enqdetails', $enq->enq_id) }}">Manage</a></li>
                             
-                            <li><a class="dropdown-item" href="{{ route('enquiry.edit', $client->id) }}">Edit</a></li>
-                            <li><a class="dropdown-item" href="{{ route('quotation.add', $client->id) }}">convert to quotation</a></li>
+                            <li><a class="dropdown-item" href="{{ route('enquiryEdit', $enq->enq_id) }}">Edit</a></li>
+                            <li><a class="dropdown-item" href="{{ route('quotationAdd',['id'=>$enq->enq_id]) }}">convert to quotation</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Reverse Enquiry</a></li> --}}
                             {{-- <li><a class="dropdown-item" href="#">Save as</a></li> --}}
                         </ul>
                     </div>
@@ -109,4 +102,31 @@
         });
     });
 </script>
+<script>
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  
+    // Close all tooltips when a new one is clicked
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      tooltipTriggerEl.addEventListener('click', function (event) {
+        tooltipList.forEach(function (tooltip) {
+          tooltip.hide(); // Hide all tooltips first
+        });
+        // Show the clicked tooltip
+        var clickedTooltip = bootstrap.Tooltip.getInstance(event.currentTarget);
+        clickedTooltip.show();
+        event.stopPropagation();
+      });
+    });
+  
+    // Close tooltips when clicking outside
+    document.addEventListener('click', function () {
+      tooltipList.forEach(function (tooltip) {
+        tooltip.hide();
+      });
+    });
+  </script>
 @endsection

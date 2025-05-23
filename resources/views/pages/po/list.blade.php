@@ -6,80 +6,44 @@
 
 <div class="row">
     <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12 d-flex justify-content-end">
+                <a href="{{ route('poAdd') }}" class="btn btn-primary">Add PO</a>
+            </div>
+        </div>
         <div class="table-responsive mt-3">
-            <table id="poTable" class="display">
-                <thead>
+            <table id="poTable" class="table table-bordered table-striped mt-3">
+                <thead class="table-dark">
                     <tr>
                         <th>Sr.</th>
                         <th>PO no</th>
                         <th>Vender</th>
                         <th>Date</th>
-                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $pos = [
-                            (object) [
-                                'id' => 1,
-                                'po_no' => 'PO01',
-                                'vender' => 'Vender 1',
-                                'date' => '2024-10-02',
-                                'status' => 'received',
-                            ],
-                            (object) [
-                                'id' => 2,
-                                'po_no' => 'PO002',
-                                'vender' => 'Vender 2',
-                                'date' => '2024-10-02',
-                                'status' => 'received',
-                            ],
-                            (object) [
-                                'id' => 3,
-                                'po_no' => 'PO003',
-                                'vender' => 'Vender 3',
-                                'date' => '2024-10-03',
-                                'status' => 'Pending',
-                            ],
-                            (object) [
-                                'id' => 4,
-                                'po_no' => 'PO004',
-                                'vender' => 'Vender 4',
-                                'date' => '2024-10-04',
-                                'status' => 'received',
-                            ],
-                            (object) [
-                                'id' => 5,
-                                'po_no' => 'PO005',
-                                'vender' => 'Vender 5',
-                                'date' => '2024-10-05',
-                                'status' => 'Ordered',
-                            ],
-                            // Add more clients as needed
-                        ];
-                    @endphp
+                    
             
                     @foreach ($pos as $po)
                     <tr>
-                        <td>{{ $po->id }}</td>
-                        <td>{{ $po->po_no }}</td>
-                        <td>{{ $po->vender }}</td>
-                        <td>{{ $po->date }}</td>
+                        <td>{{ $loop->index+1 }}</td>
+                        <td>{{ $po->po_number }}</td>
+                        <td>{{ $po->party->party_name }}</td>
+                        <td>{{ $po->po_date }}</td>
                         
-                        <td>{{ $po->status }}</td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $po->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $po->po_id }}" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $po->id }}">
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $po->po_id }}">
                                     
                                     
-                                    <li><a class="dropdown-item" href="{{ route('po.edit', $po->id) }}">Edit PO</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('poEdit', $po->po_id) }}">Edit PO</a></li>
 
-                                    <li><a class="dropdown-item" href="{{ route('po_item.list', $po->id) }}">Manage PO</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('po.view', $po->id) }}">View PO</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('poItem', $po->po_id) }}">Manage PO</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('poView', $po->po_id) }}">View PO</a></li>
                                     
                                 </ul>
                             </div>

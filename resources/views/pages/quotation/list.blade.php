@@ -5,73 +5,55 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12 d-flex justify-content-end">
-        <a href="{{ route('quotation.add') }}" class="btn btn-primary">Add Quotation</a>
+        {{-- <a href="{{ route('quotationAdd') }}" class="btn btn-primary">Add Quotation</a> --}}
     </div>
 </div>
 <div class="table-responsive mt-3">
-    <table id="quotationTable" class="display">
-        <thead>
+    <table id="quotationTable" class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Quotation No</th>
                 <th>Client</th>
                 <th>Date</th>
+                <th>Last Follow up</th>
+                <th>Next Follow up</th>
+                <th>Remark</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @php
-                $clients = [
-                    (object) [
-                        'id' => 1,
-                        'quotation_no' => 'QT001',
-                        'client' => 'Client 1',
-                        'date' => '2024-10-01',
-                    ],
-                    (object) [
-                        'id' => 2,
-                        'quotation_no' => 'QT002',
-                        'client' => 'Client 2',
-                        'date' => '2024-10-02',
-                    ],
-                    (object) [
-                        'id' => 3,
-                        'quotation_no' => 'QT003',
-                        'client' => 'Client 3',
-                        'date' => '2024-10-03',
-                    ],
-                    (object) [
-                        'id' => 4,
-                        'quotation_no' => 'QT004',
-                        'client' => 'Client 4',
-                        'date' => '2024-10-04',
-                    ],
-                    (object) [
-                        'id' => 5,
-                        'quotation_no' => 'QT005',
-                        'client' => 'Client 5',
-                        'date' => '2024-10-05',
-                    ],
-                    // Add more clients as needed
-                ];
-            @endphp
+            
     
-            @foreach ($clients as $client)
+            @foreach ($quotations as $quotation)
             <tr>
-                <td>{{ $client->id }}</td>
-                <td>{{ $client->quotation_no }}</td>
-                <td>{{ $client->client }}</td>
-                <td>{{ $client->date }}</td>
+                <td>{{ $quotation->id }}</td>
+                <td>{{ $quotation->quot_number }}</td>
+                <td>{{ $quotation->party->party_name }}</td>
+                <td>{{ $quotation->quot_date }}</td>
+                <td>{{ $quotation->nextFollowUp?->fu_done_date }}
+                    <i class="fas fa-info-circle text-info" 
+             data-bs-toggle="tooltip" 
+             data-bs-trigger="click" 
+             data-bs-placement="right" 
+             title="{{ $quotation->nextFollowUp?->fu_remark }}">
+          </i>
+                </td>
+                <td>{{ $quotation->nextFollowUp?->fu_do_date }}</td>
+                <td>{{$quotation->quot_remake}}</td>
+                
                 <td>
                     <div class="dropdown">
-                        <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $client->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $quotation->quot_id }}" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-ellipsis-v"></i>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $client->id }}">
-                            <li><a class="dropdown-item" href="{{ route('quotation.view', $client->id) }}">View</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $quotation->quot_id }}">
+                            <li><a class="dropdown-item" href="{{ route('quotationView', $quotation->quot_id) }}">View</a></li>
+                            <li><a class="dropdown-item" href="{{ route('followup', $quotation->quot_id) }}">Follow-Up</a></li>
                             
-                            <li><a class="dropdown-item" href="{{ route('quotation.edit', $client->id) }}">Edit</a></li>
-                            <li><a class="dropdown-item" href="{{ route('project.add', $client->id) }}">convert to project</a></li>
+                            <li><a class="dropdown-item" href="{{ route('quotationEdit', $quotation->quot_id) }}">Edit</a></li>
+                            <li><a class="dropdown-item" href="{{ route('quotationdetail', $quotation->quot_id) }}">Manage</a></li>
+                            <li><a class="dropdown-item" href="{{ route('projectAdd', $quotation->quot_id) }}">convert to project</a></li>
                             
                             {{-- <li><a class="dropdown-item" href="#">Save as</a></li> --}}
                         </ul>
@@ -110,4 +92,31 @@
         });
     });
 </script>
+<script>
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+  
+    // Close all tooltips when a new one is clicked
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+      tooltipTriggerEl.addEventListener('click', function (event) {
+        tooltipList.forEach(function (tooltip) {
+          tooltip.hide(); // Hide all tooltips first
+        });
+        // Show the clicked tooltip
+        var clickedTooltip = bootstrap.Tooltip.getInstance(event.currentTarget);
+        clickedTooltip.show();
+        event.stopPropagation();
+      });
+    });
+  
+    // Close tooltips when clicking outside
+    document.addEventListener('click', function () {
+      tooltipList.forEach(function (tooltip) {
+        tooltip.hide();
+      });
+    });
+  </script>
 @endsection

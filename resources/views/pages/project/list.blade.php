@@ -11,85 +11,54 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive mt-3">
-            <table id="projectTable" class="display">
-                <thead>
+            <table id="projectTable" class="table table-bordered table-striped mt-3">
+                <thead class="table-dark">
                     <tr>
                         <th>Sr.</th>
                         <th>Project no</th>
                         <th>Client</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>PO pending</th>
+                        <th>PO Date</th>
+                        
+                        <th>PO No.</th>
+                        
+                        <th>Input<br>Status</th>
+                        <th>DAP Status</th>
+                        <th>DAP  
+                            Approval<br> Status</th>
+                        <th>Final</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $projects = [
-                            (object) [
-                                'id' => 1,
-                                'project_no' => 'PJ001',
-                                'client' => 'Client 1',
-                                'date' => '2024-10-01',
-                                'po_pending' => '0',
-                                'status' => 'Started',
-                            ],
-                            (object) [
-                                'id' => 2,
-                                'project_no' => 'PJ002',
-                                'client' => 'Client 2',
-                                'date' => '2024-10-02',
-                                'po_pending' => '0',
-                                'status' => 'Design',
-                            ],
-                            (object) [
-                                'id' => 3,
-                                'project_no' => 'PJ003',
-                                'client' => 'Client 3',
-                                'date' => '2024-10-03',
-                                'po_pending' => '2',
-                                'status' => 'Quality',
-                            ],
-                            (object) [
-                                'id' => 4,
-                                'project_no' => 'PJ004',
-                                'client' => 'Client 4',
-                                'date' => '2024-10-04',
-                                'po_pending' => '0',
-                                'status' => 'Assembly',
-                            ],
-                            (object) [
-                                'id' => 5,
-                                'project_no' => 'PJ005',
-                                'client' => 'Client 5',
-                                'date' => '2024-10-05',
-                                'po_pending' => '1',
-                                'status' => 'Ready for dispatch',
-                            ],
-                            // Add more clients as needed
-                        ];
-                    @endphp
+                    
             
                     @foreach ($projects as $project)
                     <tr>
-                        <td>{{ $project->id }}</td>
-                        <td>{{ $project->project_no }}</td>
-                        <td>{{ $project->client }}</td>
-                        <td>{{ $project->date }}</td>
+                        <td>{{ $loop->index+1 }}</td>
+                        <td>{{ $project->pro_number }}</td>
+                        <td>{{ $project->party->party_name }}</td>
+                        <td>{{ $project->pro_po_date }}</td>
                         
-                        <td>{{ $project->status }}</td>
-                        <td>{{ $project->po_pending }}</td>
+                        <td>{{ $project->pro_po_number }}</td>
+                        
+                        <td class="{{ $project->pro_input == 'Pending' ? "bg-warning":"bg-success" }}">{{ $project->pro_input }}</td>
+
+                        <td class="{{ $project->pro_dap == 'Load' ? "bg-danger": ($project->pro_dap == 'Inprocess' ? "bg-warning" : "bg-success")}}">{{ $project->pro_dap }}</td>
+
+                        <td class="{{ $project->pro_dap_app == 'Pending' ? "bg-warning":"bg-success" }}">{{ $project->pro_dap_app }}</td>
+
+                        <td class="{{ $project->pro_final == 'Load' ? "bg-danger": ($project->pro_final == 'Inprocess' ? "bg-warning" : "bg-success")}}">{{ $project->pro_final }}</td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $project->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $project->pro_id }}" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $project->id }}">
-                                    <li><a class="dropdown-item" href="{{ route('element_in_project.list', $project->id) }}">Manage Elements</a></li>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $project->pro_id }}">
+                                    <li><a class="dropdown-item" href="{{ route('projectElement', $project->pro_id) }}">Manage Elements</a></li>
                                     
-                                    <li><a class="dropdown-item" href="{{ route('project.edit', $project->id) }}">Edit Project</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('projectEdit', $project->pro_id) }}">Edit Project</a></li>
 
-                                    <li><a class="dropdown-item" href="{{ route('po.convert', $project->id) }}">Make PO of it</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('projectPOAdd', $project->pro_id) }}">Make PO of it</a></li> 
                                     
                                 </ul>
                             </div>

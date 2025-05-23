@@ -3,106 +3,81 @@
     Add Quotation
 @endsection
 @section('content')
-<form action="{{ route('quotation.list') }}" method="get">
+<form action="{{ route('quotationAddPost') }}" method="post">
     @csrf
+    <input type="hidden" name="enquiry_id" value="{{ $enq->enq_id }}">
     <div class="row">
         <div class="col-lg-3">
             <div class="mb-3">
-                <label for="name" class="form-label">Client Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <label class="form-label">Quotation No</label>
+                <input type="text" class="form-control" name="quotation_no" required readonly value="{{ $quotation_no }}">
             </div>
             <div class="mb-3">
-                <label for="email" class="form-label">Date</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <label class="form-label">Client Name</label>
+                <input type="text" class="form-control" name="client_name" readonly value="{{ $enq->party->party_name }}">
             </div>
             <div class="mb-3">
-                <label for="gst" class="form-label">Quotation No</label>
-                <input type="text" class="form-control" id="gst" name="gst" required>
+                <label class="form-label">Date</label>
+                <input type="date" class="form-control" name="date" required value="{{ date('Y-m-d') }}">
             </div>
-            
+        </div>
+        <div class="col-lg-3">
+            <div class="mb-3">
+                <label class="form-label">Remark</label>
+                
+                <textarea name="quot_remake" class="form-control" id="quot_remake" cols="30" rows="10"></textarea>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12"><hr></div>
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-lg-5">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="name" name="name" >
-                    </div>
-                </div>
-                <div class="col-lg-1">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Quantity </label>
-                        <input type="text" class="form-control" id="name" name="name" >
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Rate </label>
-                        <input type="text" class="form-control" id="name" name="name" >
-                    </div>
-                </div>
-                <div class="col-lg-1">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Discount </label>
-                        <input type="text" class="form-control" id="name" name="name" >
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Amount </label>
-                        <input type="text" class="form-control" readonly id="name" name="name" >
-                    </div>
-                </div>
-                <div class="col-lg-1 d-flex justify-content-center align-items-center" >
-                    <a href="#">Add</a>
-                </div>
-            </div>
-            
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-lg-12">
             <table class="table">
                 <tr>
-                    <td>SR.</td>
-                    <td>Item</td>
-                    <td>Qty</td>
-                    <td>Rate</td>
-                    <td>Discount</td>
-                    <td>Amount</td>
-                    <td></td>
+                    <th>SR.</th>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th>Tax</th>
                 </tr>
+                @foreach ($enqds as $enqd)
                 <tr>
-                    <td>1.</td>
-                    <td>Item</td>
-                    <td>1</td>
-                    <td>1,00,000</td>
-                    <td>10%</td>
-                    <td>1,00,000</td>
-                    <td><a href="#">Edit</a><br><a href="#">Del</a></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>
+                        
+                        <input type="text"  name="items[]" class="form-control" value="{{ $enqd->enqd_product }}" >
+                    </td>
+                    <td>
+                        
+                        <input type="text" name="qty[]" class="form-control" value="{{ $enqd->enqd_qunt }}" >
+                    </td>
+                    <td>
+                        <input type="number" step="0.01" class="form-control" name="rate[]" required>
+                    </td>
+                    <td>
+                        <select class="form-select" name="tax[]" required>
+                            <option value="">Select</option>
+                            @foreach ($taxs as $tax)
+                            <option value="{{$tax->tax_id}}">{{$tax->tax_name}}</option>
+                            @endforeach
+                        </select>
+                        
+                    </td>
+                    
                 </tr>
-                <tr>
-                    <td>2.</td>
-                    <td>Item</td>
-                    <td>1</td>
-                    <td>2,00,000</td>
-                    <td>10%</td>
-                    <td>2,00,000</td>
-                    <td><a href="#">Edit</a><br><a href="#">Del</a></td>
-                </tr>
+                @endforeach
             </table>
         </div>
     </div>
+
     <div class="row mt-3">
         <div class="col-lg-3">
             <button type="submit" class="btn btn-primary">Add Quotation</button>
-            <a href="{{ route('quotation.list') }}" class="btn btn-secondary">Cancel</a>
+            <a href="{{ route('quotation') }}" class="btn btn-secondary">Cancel</a>
         </div>
     </div>
 </form>
+
 
 @endsection
 @section('script')

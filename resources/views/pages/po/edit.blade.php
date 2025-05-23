@@ -6,84 +6,58 @@
     <div class="row">
 
         <div class="col-lg-12">
-            <form action="{{ route('element_in_project.list') }}" method="get">
+            <form action="{{ route('poEditPost',$po->po_id) }}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="form-group">
                             <label for="project_no">PO No:</label>
-                            <input type="text" class="form-control" id="project_no" name="project_no" required>
+                            <input type="text" class="form-control" id="po_number" name="po_number" value="{{$po->po_number}}" readonly required>
                         </div>
 
-                        <div class="form-group">
-                            <label for="client_name">Vender Name:</label>
-                            <input type="text" class="form-control" id="client_name" name="client_name" required>
-                        </div>
+                        
 
                         <div class="form-group">
                             <label for="project_end_date">PO Date:</label>
-                            <input type="date" class="form-control" id="project_end_date" name="project_end_date"
+                            <input type="date" class="form-control" id="po_date" name="po_date" value="{{$po->po_date}}"
                                 required>
                         </div>
 
                         <div class="form-group">
-                            <label for="project_name">Project Number:</label>
-                            <input type="text" class="form-control" id="project_name" name="project_name" required>
+                            <label for="project_name">PO type:</label>
+                            <select name="po_type" class="form-control" id="po_type">
+                                <option value="{{$po->po_type}}" >{{$po->po_type}}</option>
+                                <option value="Capex">Capex</option>
+                                <option value="">Salable purchase for new Project</option>
+                                <option value="Salable purchase for new Project">Salable purchase for inventory</option>
+                                <option value="Salable purchase for rejection">Salable purchase for rejection</option>
+                                <option value="alable service taken from supplier">Salable service taken from supplier</option>
+                                <option value="">Salable purchase for other.</option>
+                                <option value="Maintenance">Maintenance</option>
+                                <option value="Tooling">Tooling</option>
+                                <option value="Consumable">Consumable</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="client_name">Vender Name:</label>
+                            <select name="po_party_id" class="form-control" id="po_party_id">
+                                <option value="{{$po->party->party_id}}" >{{$po->party->party_name}}</option>
+                                @foreach ($parties as $party)
+                                <option value="{{$party->party_id}}">{{$party->party_name}}</option>
+                                @endforeach
+                                
+                                
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="project_end_date">Remark:</label>
+                            
+                            <textarea name="po_remark" class="form-control"  id="po_remark" cols="30" rows="10">{{$po->po_remark}}</textarea>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        {{-- <table class="table">
-                            <thead>
-                                <tr>
-                                    <td>Sr.</td>
-                                    <td>Item</td>
-                                    <td>Qty</td>
-                                    <td>Rate</td>
-                                    <td>Discount</td>
-                                    <td>Amount</td>
-                                    <td>Select</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Item name has to be big fo this like whit will happen if it si very very big will it
-                                        go to next line lets see</td>
-                                    <td><input type="text" class="form-control" value="1"></td>
-                                    <td><input type="text" class="form-control" value="50000"></td>
-                                    <td><input type="text" class="form-control" value="10"></td>
-                                    <td>45,000</td>
-                                    <td><input type="radio" name="item" value="1"></td>
-
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Item name has to be big fo this like whit will happen if it si very very big will it
-                                        go to next line lets see</td>
-                                    <td><input type="text" class="form-control" value="1"></td>
-                                    <td><input type="text" class="form-control" value="100000"></td>
-                                    <td><input type="text" class="form-control" value="0"></td>
-                                    <td>100000</td>
-                                    <td><input type="radio" name="item" value="2"></td>
-
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Item name has to be big fo this like whit will happen if it si very very big will it
-                                        go to next line lets see</td>
-                                    <td><input type="text" class="form-control" value="2"></td>
-                                    <td><input type="text" class="form-control" value="20000"></td>
-                                    <td><input type="text" class="form-control" value="5"></td>
-                                    <td>38,000</td>
-                                    <td><input type="radio" name="item" value="3"></td>
-
-                                </tr>
-                            </tbody>
-                        </table> --}}
-                    </div>
-                </div>
+                
                 <div class="row mt-3">
                     <div class="col-lg-3">
                         <button type="submit" class="btn btn-primary">Submit</button>

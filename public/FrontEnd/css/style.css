@@ -21364,3 +21364,7 @@ ul li {
     margin-top: 0.2rem;
     margin-left: -1.1rem;
 }
+.sidebar .nav.sub-menu {
+    margin-bottom: 0;
+    padding: 0px 0 0 3rem !important;
+}

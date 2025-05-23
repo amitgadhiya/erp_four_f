@@ -1,14 +1,29 @@
 @extends('layouts.default')
 @section('title')
-     PO List
+     PO Item List
 @endsection
 @section('content')
 
+
 <div class="row">
-    <div class="col-lg-12 text-right">
-        <a href="{{ route('po_item.add')}}" class="btn btn-primary">Add Item</a>
+    <div class="col-lg-4 text-right">
+        <table class="table">
+            <tr>
+                <td>Project No</td>
+                <td>{{$po->po_number}}</td>
+            </tr>
+            <tr>
+                <td>Vender Name</td>
+                <td>{{$po->party->party_name}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-lg-8 text-right">
+        <a href="{{route('poItemAdd',request('id'))}}" class="btn btn-success">Add PO Item</a>
     </div>
 </div>
+
+
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive mt-3">
@@ -19,92 +34,38 @@
                         <th>Item Name</th>
                         <th>Qty</th>
                         <th>Rate</th>
-                        <th>Dis</th>
-                        <th>Tax</th>
+                        
                         <th>Amount</th>
-                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                        $items = [
-                            (object) [
-                                'id' => 1,
-                                'po_item' => 'Item name 1',
-                                'qty' => '1 nos',
-                                'rate' => '5000',
-                                'discount' => '10',
-                                'tax' => '18',
-                                'amount' => '3000',
-                                'status' => 'Ordered',
-                            ],
-                            (object) [
-                                'id' => 2,
-                                'po_item' => 'Item name 2',
-                                'qty' => '1 nos',
-                                'rate' => '5000',
-                                'discount' => '10',
-                                'tax' => '18',
-                                'amount' => '3000',
-                                'status' => 'Ordered',
-                            ],
-                            (object) [
-                                'id' => 3,
-                                'po_item' => 'Item name 3',
-                                'qty' => '1 nos',
-                                'rate' => '5000',
-                                'discount' => '10',
-                                'tax' => '18',
-                                'amount' => '3000',
-                                'status' => 'Ordered',
-                            ],
-                            (object) [
-                                'id' => 4,
-                                'po_item' => 'Item name 4',
-                                'qty' => '1 nos',
-                                'rate' => '5000',
-                                'discount' => '10',
-                                'tax' => '18',
-                                'amount' => '3000',
-                                'status' => 'Ordered',
-                            ],
-                            (object) [
-                                'id' => 5,
-                                'po_item' => 'Item name 5',
-                                'qty' => '1 nos',
-                                'rate' => '5000',
-                                'discount' => '10',
-                                'tax' => '18',
-                                'amount' => '3000',
-                                'status' => 'Ordered',
-                            ],
-                            // Add more clients as needed
-                        ];
-                    @endphp
+                   
             
-                    @foreach ($items as $item)
+                    @foreach ($poitems as $poitem)
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->po_item }}</td>
-                        <td>{{ $item->qty }}</td>
-                        <td>{{ $item->rate }}</td>
+                        <td>{{ $loop->index+1 }}</td>
+                        <td>
+                            {{ $poitem->item->item_name }}<br>
+                            {{ $poitem->poi_desc }}
                         
-                        <td>{{ $item->discount }}</td>
-                        <td>{{ $item->tax }}</td>
-                        <td>{{ $item->amount }}</td>
-                        <td>{{ $item->status }}</td>
+                        </td>
+                        <td>{{ $poitem->poi_qty }}</td>
+                        <td>{{ $poitem->poi_rate }}</td>
+                        
+                        
+                        <td>{{ $poitem->poi_rate * $poitem->poi_qty }}</td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $item->id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-link pr-3" type="button" id="dropdownMenuButton-{{ $poitem->poi_id }}" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $item->id }}">
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton-{{ $poitem->poi_id }}">
                                     
                                     
-                                    <li><a class="dropdown-item" href="{{ route('po_item.edit', $item->id) }}">Edit </a></li>
+                                    <li><a class="dropdown-item" href="{{ route('poItemEdit', ['pid'=>$po->po_id,'id'=>$poitem->poi_id]) }}">Edit </a></li>
 
-                                    <li><a class="dropdown-item" href="{{ route('po_item.delete', $item->id) }}">Delete</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('poItemDelete', ['pid'=>$po->po_id,'id'=>$poitem->poi_id]) }}">Delete</a></li>
                                     
                                 </ul>
                             </div>
