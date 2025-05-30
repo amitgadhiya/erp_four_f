@@ -300,6 +300,7 @@ Route::get('/store/outward/dconr-view/{id}',[DcOnrController::class,'view'])->na
 Route::get('/store/outward/dconr-dispatch/{id}',[DcOnrController::class,'dispatch'])->name('dconrDispatch');
 Route::post('/store/outward/dconr-edit/{id}',[DcOnrController::class,'editPost'])->name('dconrEditPost');
 Route::post('/store/outward/dconr-delete/{id}',[DcOnrController::class,'delete'])->name('dconrDelete');
+Route::post('/store/outward/dconr-add-from-dcir',[DcOnrController::class,'dconrAddPostFromDCin'])->name('dconrAddPostFromDCin');
 
 //! DC Onr item
 Route::get('/store/outward/dconr-item-list/{id}',[DcOnrItemController ::class,'index'])->name('dconrItem');

@@ -255,14 +255,14 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#workshop" aria-expanded="false"
+        <li class="nav-item {{ request()->is('production*') ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#workshop" aria-expanded="{{ request()->is('production*') ? 'true' : 'false' }}"
                 aria-controls="workshop">
                 <i class="menu-icon fas fa-hammer"></i>
                 <span class="menu-title">Production</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="workshop">
+            <div class="collapse {{ request()->is('production*') ? 'show' : '' }}" id="workshop">
                 <ul class="nav flex-column sub-menu">
 
                     <li class="nav-item">
@@ -282,14 +282,14 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#quality" aria-expanded="false"
+        <li class="nav-item {{ request()->is('quality*') ? 'quality' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#quality" aria-expanded="{{ request()->is('quality*') ? 'true' : 'false' }}"
                 aria-controls="quality">
                 <i class="menu-icon fas fa-check-circle"></i>
                 <span class="menu-title">Quality</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="quality">
+            <div class="collapse {{ request()->is('quality*') ? 'show' : '' }}" id="quality">
                 <ul class="nav flex-column sub-menu">
 
                     <li class="nav-item">
@@ -303,14 +303,14 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#assembly" aria-expanded="false"
+        <li class="nav-item {{ request()->is('assembly*') ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#assembly" aria-expanded="{{ request()->is('assembly*') ? 'true' : 'false' }}"
                 aria-controls="assembly">
                 <i class="menu-icon fas fa-cogs"></i>
                 <span class="menu-title">Assembly</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="assembly">
+            <div class="collapse {{ request()->is('assembly*') ? 'show' : '' }}" id="assembly">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('assemblyWork') }}">Data conversion</a>
@@ -326,14 +326,14 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#accounts" aria-expanded="false"
+        <li class="nav-item {{ request()->is('accounts*') ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#accounts" aria-expanded="{{ request()->is('accounts*') ? 'true' : 'false' }}"
                 aria-controls="accounts">
                 <i class="menu-icon mdi mdi-cash-multiple"></i>
                 <span class="menu-title">Accounts</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="accounts">
+            <div class="collapse {{ request()->is('accounts*') ? 'show' : '' }}" id="accounts">
                 <ul class="nav flex-column sub-menu">
 
                     <li class="nav-item">
@@ -353,14 +353,14 @@
             </div>
         </li>
 
-        {{--       
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false" aria-controls="report">
+               
+      <li class="nav-item {{ request()->is('report*') ? 'active' : '' }}">
+        <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="{{ request()->is('report*') ? 'true' : 'false' }}" aria-controls="report">
           <i class="menu-icon mdi mdi-file-chart"></i>
           <span class="menu-title">Reports</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="report">
+        <div class="collapse {{ request()->is('report*') ? 'show' : '' }}" id="report">
           <ul class="nav flex-column sub-menu">
 
           <li class="nav-item">
@@ -376,7 +376,7 @@
 
           </ul>
         </div>
-      </li> --}}
+      </li> 
 
     </ul>
 </nav>

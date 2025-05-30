@@ -17,10 +17,30 @@
                         <div class="mb-3">
                             <label for="user" class="form-label">Project Number</label>
                             <select class="form-select" id="project" name="project" required>
-                                <option value="{{$dw->project->pro_id}}" >Select {{$dw->project->pro_number}}</option>
-                                @foreach ($projects as $project)
-                                <option value="{{$project->pro_id}}">{{$project->pro_number}}</option>
-                                @endforeach
+                                
+                                
+                                <option value="@if ($dw->project)
+                                    {{$dw->project->pro_id}}
+                                @else
+                                    {{$dw->enq->enq_id}}
+                                @endif" >
+                                    @if ($dw->project)
+                                        {{$dw->project->pro_number}}
+                                    @else
+                                        {{$dw->enq->enq_number}}
+                                    @endif
+                                
+                                </option>
+                                <optgroup label="Enquiries">
+                                    @foreach ($enquiries as $enquiry)
+                                    <option value="E-{{$enquiry->enq_id}}">{{$enquiry->enq_number}}</option>
+                                    @endforeach
+                                   </optgroup>
+                                   <optgroup label="Projects">
+                                    @foreach ($projects as $project)
+                                    <option value="P-{{$project->pro_id}}">{{$project->pro_number}}</option>
+                                    @endforeach
+                                </optgroup>
                                 
                                 
                             </select>

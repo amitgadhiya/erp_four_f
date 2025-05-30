@@ -27,6 +27,8 @@
 </div>
 
 <div class="table-responsive mt-3">
+<form method="post" action="{{ route('dconrAddPostFromDCin') }}">
+    @csrf
 
         
 <table class="table">
@@ -34,6 +36,8 @@
         <th>Sr</th>
         <th>Item</th>
         <th>Qty</th>
+        <th>Balance</th>
+        <th>Return</th>
         
     </tr>
 @foreach ($dc->items as $dci)
@@ -41,12 +45,18 @@
     <td>{{ $loop->index+1 }}</td>
     <td>{{ $dci->item->item_name }}</td>
     <td>{{ $dci->dciri_qty }}</td>
+    <td>{{ $dci->dciri_balance }}</td>
+    <td><input max="{{ $dci->dciri_balance }}" required class="form-control" type="number" name="{{ $dci->dciri_id }}" id="{{ $dci->dciri_id }}" @if ($dci->dciri_balance <= 0)
+        disabled
+    @endif  ></td>
     
     
 </tr>
 @endforeach
     
 </table>
+<input type="submit" value="Return" class="mt-4 btn btn-success">
+</form>
 </div>
 
 @endsection

@@ -30,6 +30,9 @@ class DesignWork extends Model
     public function project(){
         return $this->belongsTo(Project::class,"dw_pro_id");
     }
+    public function enq(){
+        return $this->belongsTo(Enquiry::class,"dw_enq_id");
+    }
     public function catg(){
         return $this->belongsTo(WorkCatg::class,"dw_catg_id");
     }

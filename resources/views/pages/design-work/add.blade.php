@@ -20,10 +20,16 @@
                             <label for="user" class="form-label">Project Number</label>
                             <select class="form-select" id="project" name="project" required>
                                 <option value="" disabled selected>Select Project</option>
-                                @foreach ($projects as $project)
-                                <option value="{{$project->pro_id}}">{{$project->pro_number}}</option>
+                                <optgroup label="Enquiries">
+                                @foreach ($enquiries as $enquiry)
+                                <option value="E-{{$enquiry->enq_id}}">{{$enquiry->enq_number}}</option>
                                 @endforeach
-                                
+                               </optgroup>
+                               <optgroup label="Projects">
+                                @foreach ($projects as $project)
+                                <option value="P-{{$project->pro_id}}">{{$project->pro_number}}</option>
+                                @endforeach
+                                </optgroup>
                                 
                             </select>
                         </div>
@@ -63,23 +69,4 @@
 </div>
 
 @endsection
-@section('script')
-<script>
-    function validateTimeRange() {
-    const start = document.getElementById('start_time').value;
-    const end = document.getElementById('end_time').value;
 
-    if (start && end) {
-        const startDate = new Date(`1970-01-01T${start}`);
-        const endDate = new Date(`1970-01-01T${end}`);
-
-        if (startDate >= endDate) {
-            alert('Start time must be less than End time.');
-            return false; // prevent form submission
-        }
-    }
-
-    return true; // allow form submission
-}
-</script>
-@endsection

@@ -36,7 +36,7 @@
                     $formattedTime = sprintf('%02d:%02d', $hours, $mins);
                 @endphp
                     <tr>
-                        <td>{{ $log->project->pro_number }}</td>
+                        <td>{{ optional($log->project)->pro_number }} {{ optional($log->enq)->enq_number }}</td>
                         <td>{{ \Carbon\Carbon::parse($log->dw_start_time)->format('Y-m-d') }}</td>
                         <td>{{ $log->emp->emp_name }}</td>
                         <td>{{ $log->dw_desc }}</td>
